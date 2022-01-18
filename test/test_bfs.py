@@ -17,6 +17,8 @@ def test_bfs_traversal():
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
 
     assert all(node in nx_graph.nodes for node in bfs_traversal) == True
+    print(bfs_traversal)
+    print(nx.bfs_tree(nx_graph, 'Nevan Krogan').nodes)
 
 
 def test_bfs():
