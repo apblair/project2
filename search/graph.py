@@ -52,7 +52,7 @@ class Graph:
         if end:
             path_list = [path for path in bfs_dict['paths'] if path[0]==start and path[-1] == end]
             if len(path_list) == 0:
-                print('A path does not exist for start ' + start + ' and end ' + end + ' node.')
+                print('A path does not exist for start ' + start + ' and end ' + end + ' nodes.')
                 return
             if len(path_list) > 1:
                 minimum_path_length = len(min(path_list))
@@ -67,5 +67,3 @@ class Graph:
                 return path_list[0]
         else:
             return bfs_dict['traversal']
-
-bfs_traversal = Graph('./data/tiny_network.adjlist').bfs('Nevan Krogan')
