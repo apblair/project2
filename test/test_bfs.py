@@ -11,6 +11,8 @@ def test_bfs_traversal():
     that all nodes are being traversed (ie. returns 
     the right number of nodes, in the right order, etc.)
     """
+    # print(nx.shortest_path(self.graph, source=start, target=end))
+
     pass
 
 def test_bfs():
@@ -25,3 +27,4 @@ def test_bfs():
     which should return None. 
     """
     pass
+
