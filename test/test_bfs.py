@@ -15,7 +15,9 @@ def test_bfs_traversal():
     adj_file = './data/tiny_network.adjlist'
     bfs_traversal = Graph(adj_file).bfs('Nevan Krogan')
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
-    print(bfs_traversal)
+
+    assert all(node in nx_graph.nodes for node in bfs_traversal) == True
+
 
 def test_bfs():
     """
