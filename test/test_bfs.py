@@ -1,8 +1,9 @@
 # write tests for bfs
 import pytest
-from search import graph
+import networkx as nx
+from search import *
 
-@pytest.fixture
+# @pytest.fixture
 def test_bfs_traversal():
     """
     TODO: Write your unit test for a breadth-first
@@ -11,9 +12,10 @@ def test_bfs_traversal():
     that all nodes are being traversed (ie. returns 
     the right number of nodes, in the right order, etc.)
     """
-    # print(nx.shortest_path(self.graph, source=start, target=end))
-
-    pass
+    adj_file = './data/tiny_network.adjlist'
+    bfs_traversal = Graph(adj_file).bfs('Nevan Krogan')
+    nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
+    print(bfs_traversal)
 
 def test_bfs():
     """
@@ -26,5 +28,10 @@ def test_bfs():
     Include an additional test for nodes that are not connected 
     which should return None. 
     """
-    pass
+    bfs_traversal = Graph('./data/.citation_network.adjlist').bfs('Nevan Krogan')
+
+test_bfs_traversal()
+
+    # print(nx.shortest_path(self.graph, source=start, target=end))
+
 
