@@ -1,4 +1,4 @@
-![BuildStatus](https://github.com/apblair/project2/badge.svg?event=push)
+![BuildStatus](https://github.com/apblair/project2/actions/workflows/test.yml/badge.svg?event=push)
 
 # Project 2
 Breadth-first search
