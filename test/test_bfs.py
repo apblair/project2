@@ -34,15 +34,14 @@ def test_bfs():
     which should return None. 
     """
     adj_file = './data/citation_network.adjlist'
+
     start = 'Nadav Ahituv'
     end = 'Ryan Corces'
-
     shortest_path = Graph(adj_file).bfs(start, end)
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
+    assert shortest_path == nx.shortest_path(nx_graph, start, end)
 
-    print(shortest_path)
-    print(nx.shortest_path(nx_graph, start, end))
-
-
-# test_bfs_traversal()
-test_bfs()
+    start = 'Jimmie Ye'
+    end = 'Atul Butte'
+    shortest_path = Graph(adj_file).bfs(start, end)
+    assert shortest_path == None
