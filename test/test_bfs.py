@@ -45,4 +45,8 @@ def test_bfs():
     end = 'Atul Butte'
     shortest_path = Graph(adj_file).bfs(start, end)
     assert shortest_path == None
-    
+
+    start = 'Vasilis Ntranos'
+    end = 'Yin Shen'
+    shortest_path = Graph(adj_file).bfs(start, end)
+    assert nx.shortest_path(nx_graph, start, end) in shortest_path

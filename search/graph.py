@@ -59,8 +59,8 @@ class Graph:
                 shortest_path_length = min(path_length_list)
                 shortest_path_list = [path_list[i] for i,x in enumerate(path_length_list) if x == shortest_path_length]
                 if len(shortest_path_list) > 1:
-                    print('There are ' + str(len(shortest_path_list)) + ' shortest paths of length ' + str(shortest_path_list) + \
-                         '. Returning all possible shortest paths.')
+                    print('There are ' + str(len(shortest_path_list)) + ' shortest paths of length ' + str(len(shortest_path_list[0])) + \
+                         ' for start ' + start + ' and end ' + end + ' nodes. Returning all possible shortest paths.')
                     return shortest_path_list
                 else:
                     return shortest_path_list[0]
