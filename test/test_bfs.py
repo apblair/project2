@@ -38,7 +38,7 @@ def test_bfs():
     """
     adj_file = './data/citation_network.adjlist'
 
-    # Check if nodes are connected and return the shortest path using network's shortest_path method.
+    # Check if nodes are connected, and return the shortest path using network's shortest_path method.
     start = 'Nadav Ahituv'
     end = 'Ryan Corces'
     shortest_path = Graph(adj_file).bfs(start, end)
@@ -51,7 +51,7 @@ def test_bfs():
     shortest_path = Graph(adj_file).bfs(start, end)
     assert shortest_path == None
 
-    # Check if multiple shortest paths 
+    # Check if multiple shortest paths are returned, and in network's shortest_path method.
     start = 'Vasilis Ntranos'
     end = 'Yin Shen'
     shortest_path = Graph(adj_file).bfs(start, end)
