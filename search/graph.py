@@ -58,7 +58,7 @@ class Graph:
                 minimum_path_length = len(min(path_list))
                 shortest_path_list = [path for path in path_list if len(path) == minimum_path_length]
                 if len(shortest_path_list) > 1:
-                    print('There are more than one shortest paths of length ' + str(minimum_path_length) + \
+                    print('There are ' + str(len(shortest_path_list)) + ' shortest paths of length ' + str(minimum_path_length) + \
                          '. Returning all possible shortest paths.')
                     return shortest_path_list
                 else:
