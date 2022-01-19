@@ -7,7 +7,8 @@ class Graph:
     Attributes
     ----------
     filename : str
-    graph : str
+    graph : class 
+        networkx.classes.digraph.DiGraph
     start str
     end : str
     
