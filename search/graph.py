@@ -53,7 +53,7 @@ class Graph:
                     bfs_dict['paths'].append(path_traversal)
         # End of BFS graph traversal
 
-        if end: # if, an end node is provided then find the shortest paths or inform user a path is not available
+        if end: # if, an end node is provided then find the shortest paths or inform the user a path is not available
             path_list = [path for path in bfs_dict['paths'] if path[0]==start and path[-1] == end]
             
             # No path
