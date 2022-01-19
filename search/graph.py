@@ -3,26 +3,49 @@ import networkx as nx
 class Graph:
     """
     Class to contain a graph and your bfs function
+    
+    Attributes
+    ----------
+    filename : str
+    graph : str
+    start str
+    end : str
+    
+    Methods
+    -------
+    bfs(start, end=None)
+        Breadth-first search implementation.
     """
     def __init__(self, filename: str):
         """
-        Initialization of graph object which serves as a container for 
-        methods to load data and 
-        
+        Parameters
+        ----------
+        filename : str
+            Path to adjacency list file
         """
         self.graph = nx.read_adjlist(filename, create_using=nx.DiGraph, delimiter=";")
 
     def bfs(self, start, end=None):
         """
+        Breadth-first search.
+
+        Parameters
+        ----------
+        start : str
+            Start vertex of a BFS
+        end : str
+            End vertex of a BFS (default None)
+
+        References
+        ----------
+        https://www.geeksforgeeks.org/building-an-undirected-graph-and-finding-shortest-path-using-dictionaries-in-python/
+        
         TODO: write a method that performs a breadth first traversal and pathfinding on graph G
 
         * If there is no end node, just return a list with the order of traversal
         * If there is an end node and a path exists, return a list of the shortest path
         * If there is an end node and a path does not exist, return None
         * If there is no start or user provided end node in the graph, inform the user
-
-        References:
-        https://www.geeksforgeeks.org/building-an-undirected-graph-and-finding-shortest-path-using-dictionaries-in-python/
         """
         assert self.graph.has_node(start), 'start node is not in the graph.'
 
@@ -77,5 +100,5 @@ class Graph:
             else:
                 return path_list[0]
         
-        else: # else, return a list of traversed nodes
+        else: # else, return a list of the traversed nodes
             return bfs_dict['traversal']
