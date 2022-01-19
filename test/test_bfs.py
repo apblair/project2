@@ -13,13 +13,14 @@ def test_bfs_traversal():
     the right number of nodes, in the right order, etc.)
     """
     adj_file = './data/tiny_network.adjlist'
-    bfs_traversal = Graph(adj_file).bfs('Nevan Krogan')
+    start_node  = 'Nevan Krogan'
+
+    bfs_traversal = Graph(adj_file).bfs(start_node)
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
 
     assert all(node in nx_graph.nodes for node in bfs_traversal) == True
-    print(bfs_traversal)
-    print(nx.bfs_tree(nx_graph, 'Nevan Krogan').nodes)
-
+    nx_bfs_traversal_nodes = list(nx.bfs_tree(nx_graph, start_node).nodes)
+    assert all([True for node in range(len(bfs_traversal)) if bfs_traversal[node] == nx_bfs_traversal_nodes[node]]) == True
 
 def test_bfs():
     """
@@ -35,7 +36,6 @@ def test_bfs():
     bfs_traversal = Graph('./data/.citation_network.adjlist').bfs('Nevan Krogan')
 
 test_bfs_traversal()
-
-    # print(nx.shortest_path(self.graph, source=start, target=end))
+# print(nx.shortest_path(self.graph, source=start, target=end))
 
 
