@@ -6,6 +6,8 @@ from search import *
 @pytest.fixture
 def test_bfs_traversal():
     """
+    Unit test for checking if all nodes were traversed and in BFS order.
+
     TODO: Write your unit test for a breadth-first
     traversal here. Create an instance of your Graph class 
     using the 'tiny_network.adjlist' file and assert 
@@ -27,6 +29,8 @@ def test_bfs_traversal():
 
 def test_bfs():
     """
+    Unit test for checking connected or unconnected nodes and shortest path(s).
+
     TODO: Write your unit test for your breadth-first 
     search here. You should generate an instance of a Graph
     class using the 'citation_network.adjlist' file 

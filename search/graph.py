@@ -2,7 +2,7 @@ import networkx as nx
 
 class Graph:
     """
-    Class to contain a graph and your bfs function
+    Class to contain a networkx graph and implementation of breadth-first search
     
     Attributes
     ----------
@@ -10,12 +10,14 @@ class Graph:
     graph : class 
         networkx.classes.digraph.DiGraph
     start str
+        Start vertex of a BFS
     end : str
+        End vertex of a BFS (default None)
     
     Methods
     -------
     bfs(start, end=None)
-        Breadth-first search implementation.
+        Breadth-first search algorithm. Returns a list of nodes traversed or shortest path(s).
     """
     def __init__(self, filename: str):
         """
@@ -28,7 +30,7 @@ class Graph:
 
     def bfs(self, start, end=None):
         """
-        Breadth-first search.
+        Breadth-first search algorithm. Returns a list of nodes traversed or, if a user provides an end vertex, the shortest path(s).
 
         Parameters
         ----------
