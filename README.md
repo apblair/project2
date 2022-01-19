@@ -1,3 +1,5 @@
+![BuildStatus](https://github.com/apblair/project2/badge.svg?event=push)
+
 # Project 2
 Breadth-first search
 
