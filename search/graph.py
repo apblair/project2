@@ -21,6 +21,8 @@ class Graph:
         * If there is an end node and a path does not exist, return None
         * If there is no start or user provided end node in the graph, inform the user
 
+        References:
+        https://www.geeksforgeeks.org/building-an-undirected-graph-and-finding-shortest-path-using-dictionaries-in-python/
         """
         assert self.graph.has_node(start), 'start node is not in the graph.'
 
@@ -32,39 +34,48 @@ class Graph:
             return
 
         bfs_dict = {
-            'queue':[[start]],
-            'traversal':[],
-            'paths':[]}
+            'queue':[[start]], # bfs traversal queue
+            'traversal':[], # visited nodes in bfs
+            'paths':[]} # paths visited in bfs
 
+        # Start of BFS graph traversal
         while bfs_dict['queue']:
             current_path = bfs_dict['queue'].pop(0)
             current_vertex = current_path[-1]
+            # Visit neighbors of untraversed nodes
             if current_vertex not in bfs_dict['traversal']:
                 bfs_dict['traversal'].append(current_vertex)
                 for neighbor in self.graph.neighbors(current_vertex):
+                    # Keep track of the current node's neighbors
                     path_traversal = list(current_path)
                     path_traversal.append(neighbor)
                     bfs_dict['queue'].append(path_traversal)
                     bfs_dict['paths'].append(path_traversal)
-        
-        assert all(node in self.graph.nodes for node in bfs_dict['traversal']) == True
+        # End of BFS graph traversal
 
-        if end:
+        if end: # if, an end node is provided find the shortest paths or inform user a path is not available
             path_list = [path for path in bfs_dict['paths'] if path[0]==start and path[-1] == end]
+            
+            # No path
             if len(path_list) == 0:
                 print('A path does not exist for start ' + start + ' and end ' + end + ' nodes.')
                 return
+            
+            # Single or multiple paths
             if len(path_list) > 1:
-                path_length_list = [len(path) for path in path_list]
+                path_length_list = [len(path) for path in path_list] # length of each path traversed
                 shortest_path_length = min(path_length_list)
-                shortest_path_list = [path_list[i] for i,x in enumerate(path_length_list) if x == shortest_path_length]
+                shortest_path_list = [path_list[i] for i,x in enumerate(path_length_list) if x == shortest_path_length] # subset shortest paths
                 if len(shortest_path_list) > 1:
                     print('There are ' + str(len(shortest_path_list)) + ' shortest paths of length ' + str(len(shortest_path_list[0])) + \
                          ' for start ' + start + ' and end ' + end + ' nodes. Returning all possible shortest paths.')
                     return shortest_path_list
                 else:
                     return shortest_path_list[0]
+            
+            # Only one shortest path
             else:
                 return path_list[0]
-        else:
+        
+        else: # else, return a list of traversed nodes
             return bfs_dict['traversal']

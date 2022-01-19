@@ -18,7 +18,10 @@ def test_bfs_traversal():
     bfs_traversal = Graph(adj_file).bfs(start)
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
 
+    # Check if all nodes were traversed
     assert all(node in nx_graph.nodes for node in bfs_traversal) == True
+
+    # Check if nodes are traversed in the right order using networkx's bfs_tree method.
     nx_bfs_traversal_nodes = list(nx.bfs_tree(nx_graph, start).nodes)
     assert all([True for node in range(len(bfs_traversal)) if bfs_traversal[node] == nx_bfs_traversal_nodes[node]]) == True
 
@@ -35,17 +38,20 @@ def test_bfs():
     """
     adj_file = './data/citation_network.adjlist'
 
+    # Check if nodes are connected and return the shortest path using network's shortest_path method.
     start = 'Nadav Ahituv'
     end = 'Ryan Corces'
     shortest_path = Graph(adj_file).bfs(start, end)
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
     assert shortest_path == nx.shortest_path(nx_graph, start, end)
 
+    # Check if non-connected nodes return None
     start = 'Jimmie Ye'
     end = 'Atul Butte'
     shortest_path = Graph(adj_file).bfs(start, end)
     assert shortest_path == None
 
+    # Check if multiple shortest paths 
     start = 'Vasilis Ntranos'
     end = 'Yin Shen'
     shortest_path = Graph(adj_file).bfs(start, end)
