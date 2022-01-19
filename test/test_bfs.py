@@ -3,7 +3,7 @@ import pytest
 import networkx as nx
 from search import *
 
-# @pytest.fixture
+@pytest.fixture
 def test_bfs_traversal():
     """
     TODO: Write your unit test for a breadth-first
@@ -13,13 +13,13 @@ def test_bfs_traversal():
     the right number of nodes, in the right order, etc.)
     """
     adj_file = './data/tiny_network.adjlist'
-    start_node  = 'Nevan Krogan'
+    start  = 'Nevan Krogan'
 
-    bfs_traversal = Graph(adj_file).bfs(start_node)
+    bfs_traversal = Graph(adj_file).bfs(start)
     nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
 
     assert all(node in nx_graph.nodes for node in bfs_traversal) == True
-    nx_bfs_traversal_nodes = list(nx.bfs_tree(nx_graph, start_node).nodes)
+    nx_bfs_traversal_nodes = list(nx.bfs_tree(nx_graph, start).nodes)
     assert all([True for node in range(len(bfs_traversal)) if bfs_traversal[node] == nx_bfs_traversal_nodes[node]]) == True
 
 def test_bfs():
@@ -33,9 +33,16 @@ def test_bfs():
     Include an additional test for nodes that are not connected 
     which should return None. 
     """
-    bfs_traversal = Graph('./data/.citation_network.adjlist').bfs('Nevan Krogan')
+    adj_file = './data/citation_network.adjlist'
+    start = 'Nadav Ahituv'
+    end = 'Ryan Corces'
 
-test_bfs_traversal()
-# print(nx.shortest_path(self.graph, source=start, target=end))
+    shortest_path = Graph(adj_file).bfs(start, end)
+    nx_graph = nx.read_adjlist(adj_file, create_using=nx.DiGraph, delimiter=";")
+
+    print(shortest_path)
+    print(nx.shortest_path(nx_graph, start, end))
 
 
+# test_bfs_traversal()
+test_bfs()

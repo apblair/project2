@@ -46,6 +46,8 @@ class Graph:
                     path_traversal.append(neighbor)
                     bfs_dict['queue'].append(path_traversal)
                     bfs_dict['paths'].append(path_traversal)
+                    # if neighbor == end:
+                    #     print(path_traversal)
         
         assert all(node in self.graph.nodes for node in bfs_dict['traversal']) == True
 
@@ -55,14 +57,16 @@ class Graph:
                 print('A path does not exist for start ' + start + ' and end ' + end + ' nodes.')
                 return
             if len(path_list) > 1:
-                minimum_path_length = len(min(path_list))
-                shortest_path_list = [path for path in path_list if len(path) == minimum_path_length]
-                if len(shortest_path_list) > 1:
-                    print('There are ' + str(len(shortest_path_list)) + ' shortest paths of length ' + str(minimum_path_length) + \
+                path_length_list = [len(path) for path in path_list]
+                min_path_length = min(path_length_list)
+                min_path_length_indices = [i for i,x in enumerate(path_length_list) if x == min_path_length]
+                min_paths = [path_list[i] for i in min_path_length_indices]
+                if len(min_paths) > 1:
+                    print('There are ' + str(len(min_paths)) + ' shortest paths of length ' + str(min_paths) + \
                          '. Returning all possible shortest paths.')
-                    return shortest_path_list
+                    return min_paths
                 else:
-                    return shortest_path_list[0]
+                    return min_paths[0]
             else:
                 return path_list[0]
         else:
